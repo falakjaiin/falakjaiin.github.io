@@ -1,0 +1,35 @@
+<html>
+    <table width='100%' border=1px cellspacing=0>
+        <caption>My accomplished courses at CapU</caption>
+        <tr>
+            <th>TERM</th>
+            <th>COURSE</th>
+            <th>COURSE NAME</th>
+        </tr>
+        <tr>
+            <td>Summer 2023</td>
+            <td>COMP115</td>
+            <td>Learn to code</td>
+        </tr>
+        <tr>
+            <td>Summer 2023</td>
+            <td>MATH105</td>
+            <td>Pre-calculus</td>
+        </tr>
+        <tr>
+            <td>Fall 2023</td>
+            <td>COMP120</td>
+            <td>Computer Science for Engineers</td>
+        </tr>
+        <tr>
+            <td>Fall 2023</td>
+            <td>MATH116</td>
+            <td>Calculus 1</td>
+        </tr>
+        <tr>
+            <td>Fall 2023</td>
+            <td>STAT101</td>
+            <td>Introduction to Statistics</td>
+        </tr>
+        </table>
+ </html>
