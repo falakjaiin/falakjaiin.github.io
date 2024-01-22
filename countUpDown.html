@@ -1,17 +1,23 @@
 <html>
     <head>
-        <title>JS Variable</title>
+        <title>Counting UP DOWN</title>
         <script>
             let count = 0;
-            function counting()
+            function countingup()
             {
                 count = count + 1;
-                alert(count)
+                alert(countup)
+            }
+            function countingdown()
+            {
+                count = count - 1;
+                alert(countdown)
             }
         </script>
     </head>
     <body>
-        <p>We love web programming!!</p>
-        <button onclick="counting()">Click me to count</button>
+        <p>We love counting!!</p>
+        <button onclick="countingup()">Count up</button>
+        <button onclick="countingdown()">Count down</button>
     </body>
 </html>
