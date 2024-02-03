@@ -16,23 +16,38 @@ document.addEventListener('DOMContentLoaded',function()
 
         function input_button(expr)
         {
-            if(value === '=')
+            switch(expr)
             {
-                evaluate();
+                case '=':
+                    evaluate();
+                    break;
+                case 'CLEAR':
+                    clear_expression();
+                    break;
+                case 'DELETE':
+                    delete_last();
+                    break;
+                default:
+                    add_value(expr);
+                    break;
+            }
+            // if(value === '=')
+            // {
+            //     evaluate();
 
-            }
-            else if(value === 'CLEAR')
-            {
-                clear_expression();
-            }
-            else if(value === 'DELETE')
-            {
-                delete_last();
-            }
-            else
-            {
-                add_value(expr);
-            }
+            // }
+            // else if(value === 'CLEAR')
+            // {
+            //     clear_expression();
+            // }
+            // else if(value === 'DELETE')
+            // {
+            //     delete_last();
+            // }
+            // else
+            // {
+            //     add_value(expr);
+            // }
         }
 
         function add_value(expr)
@@ -61,3 +76,8 @@ document.addEventListener('DOMContentLoaded',function()
             }
         }
 });
+
+
+
+
+    
