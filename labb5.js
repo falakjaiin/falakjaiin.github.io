@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   async function fetchWeatherData(selectedCity) 
   {
-    const apidata = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${selectedCity}&aqi=yes`;
+    const apidata = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${selectedCity}&aqi=no`;
     console.log('API URL:', apidata); 
 
     try {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('Response Data:', data); 
 
       const location = data.location.name + ', ' + data.location.region + ', ' + data.location.country;
-      const temperature = data.current.temp_c;
+      const temperature = data.current.temp_c + '°C';
       const condition = data.current.condition.text;
 
       currentWeather.innerHTML = `
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
   async function fetchWeatherforecast(selectedCity) {
-    const apidataa = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${selectedCity}&aqi=no&alerts=no`;
+    const apidataa = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${selectedCity}&aqi=no&alerts=no`;
     console.log('API URL:', apidataa); 
 
     try {
@@ -41,19 +41,15 @@ document.addEventListener('DOMContentLoaded', function() {
       const datta = await responsee.json();
       console.log('Response Data:', datta); 
 
-      const date = datta.forecast.forecastday.day.date;
-      const maxtemp = datta.forecast.forecastday.day.day.maxtemp_c;
-      const mintemp = datta.forecast.forecastday.day.day.mintemp_c;
-
-      // console.log('Date:', date); 
-      // console.log('Maximum Temperature:', maxtemp); 
-      // console.log('Minimum Temperature:', mintemp); 
+      const date = datta.forecast.forecastday[0].date;
+      const temperature = datta.forecast.forecastday[0].day.maxtemp_c;
+      const condition = datta.forecast.forecastday[0].day.condition.text;
 
       forecastWeather.innerHTML = `
         <h2>7-Days Weather Forecast</h2>
         <p><strong>Date:</strong> ${date}</p>
-        <p><strong>Maximum Temperature:</strong> ${maxtemp}</p>
-        <p><strong>Minimum Temperature:</strong> ${mintemp}</p>
+        <p><strong>Temperature:</strong> ${temperature}</p>
+        <p><strong>Condition:</strong> ${condition}</p>
       `;
     } catch (error) {
       console.error('Error fetching weather data:', error);
@@ -62,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
 
-  citiesSelect.addEventListener('change', function() {
+  citiesSelect.addEventListener('change', function() 
+  {
     const selectedCity = this.value;
     fetchWeatherData(selectedCity);
     fetchWeatherforecast(selectedCity);
