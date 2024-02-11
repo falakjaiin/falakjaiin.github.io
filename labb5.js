@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
 
   async function fetchWeatherforecast(selectedCity) {
-    const apidataa = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${selectedCity}&aqi=no&alerts=no`;
+    const apidataa = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${selectedCity}&days=7&aqi=no&alerts=no`;
     console.log('API URL:', apidataa); 
 
     try {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('Response Data:', datta); 
 
       const date = datta.forecast.forecastday[0].date;
-      const temperature = datta.forecast.forecastday[0].day.maxtemp_c;
+      const temperature = datta.forecast.forecastday[0].day.maxtemp_c  + '°C';
       const condition = datta.forecast.forecastday[0].day.condition.text;
 
       forecastWeather.innerHTML = `
