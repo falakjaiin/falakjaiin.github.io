@@ -19,7 +19,7 @@
             };
             try 
             {
-                const response = await fetch('https://fun165-98f8a-default-rtdb.firebaseio.com/chatMsg.json', 
+                const response = await fetch('https://comp165lab6-default-rtdb.firebaseio.com/msgdatabase.json', 
                 {
                     method: 'POST',
                     headers: 
@@ -60,7 +60,7 @@
         hideForm();
         try
         {
-            const response = await fetch('https://fun165-98f8a-default-rtdb.firebaseio.com/chatMsg.json');
+            const response = await fetch('https://comp165lab6-default-rtdb.firebaseio.com/msgdatabase.json');
             if (!response.ok)
             {
                 throw new Error('Error in fetching data.');
