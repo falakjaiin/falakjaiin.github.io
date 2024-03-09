@@ -23,6 +23,7 @@
 
 <script>
     let cartItems = []; // Array
+    // const database = firebase.database();
 
     function addToCart(productName, price) {
         cartItems.push({ name: productName, price: price });
@@ -50,19 +51,8 @@
 
         cartCountElement.textContent = cartItems.length;
 
-        // for (let productName in productCount) {
-        //     const amount = productCount[productName];
-        //     const li = document.createElement('li');
-        //     const unitPrice = cartItems.find(item => item.name === productName).price;
-        //     const totalProductPrice = unitPrice * amount;
-        //     li.textContent = `${productName} - Amount: ${amount}, Unit Price: $${unitPrice}, Total: $${totalProductPrice}`;
-        //     cartElement.appendChild(li);
-        // }
-
-        // Get the div element with id "cart"
         const cartDiv = document.getElementById('cart');
         
-        // Clear the content of the cartDiv
         cartDiv.innerHTML = `
             <table id='cartTable'>
             <tr>
@@ -77,16 +67,13 @@
             </table>
         `;
 
-        // Loop through each product in the productCount object
         for (let productName in productCount) {
             const amount = productCount[productName];
             const unitPrice = cartItems.find(item => item.name === productName).price;
             const totalProductPrice = unitPrice * amount;
 
-            // Create a new table row
             const tr = document.createElement('tr');
 
-            // Create table cells for each piece of information
             const productNameCell = document.createElement('td');
             productNameCell.textContent = productName;
             tr.appendChild(productNameCell);
@@ -103,11 +90,9 @@
             totalProductPriceCell.textContent = `$${totalProductPrice}`;
             tr.appendChild(totalProductPriceCell);
 
-            // Append the table row to the table
             cartTable.appendChild(tr);
         }
 
-        // Append the table to the cartDiv
         cartDiv.appendChild(cartTable);
 
 
@@ -124,17 +109,15 @@
     }
 
     async function submitOrder() {
-        const databaseUrl = 'https://lab7-chat-3f334-default-rtdb.firebaseio.com/chatMsg.json';
+        const databaseUrl = 'https://comp165lab6-default-rtdb.firebaseio.com/msgdatabase.json';
 
         const timestamp = new Date().toLocaleString();
 
-        // Prepare order data
         const orderData = {
             timestamp: timestamp,
             items: {}
         };
 
-        // Populate items and their amounts in the order data
         cartItems.forEach(item => {
             if (orderData.items[item.name]) {
                 orderData.items[item.name].amount++;
@@ -145,7 +128,6 @@
                 };
             }
         });
-        //console.log(orderData);
         try {
             const response = await fetch(databaseUrl, {
                 method: 'POST',
@@ -158,7 +140,6 @@
             if (!response.ok) {
                 throw new Error('Failed to send message');
             }
-            // Clear cart and reset UI
             cartItems = [];
             displayCart();
             alert('Order submitted successfully!');
@@ -184,7 +165,6 @@
             };
         });
 
-         // Submit order button event listener
          document.querySelector('#submit').onclick = submitOrder;
     });
 </script>
@@ -217,7 +197,7 @@
     </div>
 
     <button id="showHideCart">Show/Hide Cart Details</button>
-    <button id="submit">Submit Order</button> <!---->
+    <button id="submit" onclick="submitOrder()">Submit Order</button>
 
     <br>
     <br>
